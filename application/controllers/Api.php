@@ -92,27 +92,27 @@ class Api extends REST_Controller {
 			'connote_id' => UUID::v4(),
 			'connote_number' => $this->_ifempty($rawdata['connote'], 'connote_number', NULL),
 			'connote_service' => $this->_ifempty($rawdata['connote'], 'connote_service', NULL),
-			'connote_service_price' => $this->_ifempty($rawdata['connote'], 'connote_service_price', NULL),
-			'connote_amount' => $this->_ifempty($rawdata['connote'], 'connote_amount', NULL),
+			'connote_service_price' => $this->_ifempty($rawdata['connote'], 'connote_service_price', 0),
+			'connote_amount' => $this->_ifempty($rawdata['connote'], 'connote_amount', 0),
 			'connote_code' => $this->_ifempty($rawdata['connote'], 'connote_code', NULL),
 			'connote_booking_code' => $this->_ifempty($rawdata['connote'], 'connote_booking_code', NULL),
-			'connote_order' => $this->_ifempty($rawdata['connote'], 'connote_order', NULL),
+			'connote_order' => $this->_ifempty($rawdata['connote'], 'connote_order', 0),
 			'connote_state' => $this->_ifempty($rawdata['connote'], 'connote_state', NULL),
-			'connote_state_id' => $this->_ifempty($rawdata['connote'], 'connote_state_id', NULL),
+			'connote_state_id' => $this->_ifempty($rawdata['connote'], 'connote_state_id', 0),
 			'zone_code_from' => $this->_ifempty($rawdata['connote'], 'zone_code_from', NULL),
 			'zone_code_to' => $this->_ifempty($rawdata['connote'], 'zone_code_to', NULL),
 			'surcharge_amount' => $this->_ifempty($rawdata['connote'], 'surcharge_amount', NULL),
 			'transaction_id' => $this->_ifempty($transaction_data, 'transaction_id', NULL),
-			'actual_weight' => $this->_ifempty($rawdata['connote'], 'actual_weight', NULL),
-			'volume_weight' => $this->_ifempty($rawdata['connote'], 'volume_weight', NULL),
-			'chargeable_weight' => $this->_ifempty($rawdata['connote'], 'chargeable_weight', NULL),
+			'actual_weight' => $this->_ifempty($rawdata['connote'], 'actual_weight', 0),
+			'volume_weight' => $this->_ifempty($rawdata['connote'], 'volume_weight', 0),
+			'chargeable_weight' => $this->_ifempty($rawdata['connote'], 'chargeable_weight', 0),
 			'created_at' => $this->_ifempty($rawdata['connote'], 'created_at', NULL),
 			'updated_at' => $this->_ifempty($rawdata['connote'], 'updated_at', NULL),
-			'organization_id' => $this->_ifempty($rawdata['connote'], 'organization_id', NULL),
+			'organization_id' => $this->_ifempty($rawdata['connote'], 'organization_id', 0),
 			'location_id' => $this->_ifempty($rawdata['connote'], 'location_id', NULL),
-			'connote_total_package' => $this->_ifempty($rawdata['connote'], 'connote_total_package', NULL),
-			'connote_surcharge_amount' => $this->_ifempty($rawdata['connote'], 'connote_surcharge_amount', NULL),
-			'connote_sla_day' => $this->_ifempty($rawdata['connote'], 'connote_sla_day', NULL),
+			'connote_total_package' => $this->_ifempty($rawdata['connote'], 'connote_total_package', 0),
+			'connote_surcharge_amount' => $this->_ifempty($rawdata['connote'], 'connote_surcharge_amount', 0),
+			'connote_sla_day' => $this->_ifempty($rawdata['connote'], 'connote_sla_day', 0),
 			'location_name' => $this->_ifempty($rawdata['connote'], 'location_name', NULL),
 			'location_type' => $this->_ifempty($rawdata['connote'], 'location_type', NULL),
 			'source_tariff_db' => $this->_ifempty($rawdata['connote'], 'source_tariff_db', NULL),
@@ -121,34 +121,34 @@ class Api extends REST_Controller {
 			'history' => $this->_ifempty($rawdata['connote'], 'history', NULL),
 		);
 
-		$this->form_validation->set_rules('connote_id', 'connote_id', 'trim');
-		$this->form_validation->set_rules('connote_number', 'connote_number', 'trim');
-		$this->form_validation->set_rules('connote_service', 'connote_service', 'trim');
-		$this->form_validation->set_rules('connote_service_price', 'connote_service_price', 'trim');
-		$this->form_validation->set_rules('connote_amount', 'connote_amount', 'trim');
-		$this->form_validation->set_rules('connote_code', 'connote_code', 'trim');
-		$this->form_validation->set_rules('connote_booking_code', 'connote_booking_code', 'trim');
-		$this->form_validation->set_rules('connote_order', 'connote_order', 'trim');
-		$this->form_validation->set_rules('connote_state', 'connote_state', 'trim');
-		$this->form_validation->set_rules('connote_state_id', 'connote_state_id', 'trim');
-		$this->form_validation->set_rules('zone_code_from', 'zone_code_from', 'trim');
-		$this->form_validation->set_rules('zone_code_to', 'zone_code_to', 'trim');
-		$this->form_validation->set_rules('surcharge_amount', 'surcharge_amount', 'trim');
-		$this->form_validation->set_rules('transaction_id', 'transaction_id', 'trim');
-		$this->form_validation->set_rules('actual_weight', 'actual_weight', 'trim');
-		$this->form_validation->set_rules('volume_weight', 'volume_weight', 'trim');
-		$this->form_validation->set_rules('chargeable_weight', 'chargeable_weight', 'trim');
+		$this->form_validation->set_rules('connote_id', 'connote_id', 'trim|max_length[36]');
+		$this->form_validation->set_rules('connote_number', 'connote_number', 'trim|max_length[11]');
+		$this->form_validation->set_rules('connote_service', 'connote_service', 'trim|max_length[100]');
+		$this->form_validation->set_rules('connote_service_price', 'connote_service_price', 'trim|max_length[20]');
+		$this->form_validation->set_rules('connote_amount', 'connote_amount', 'trim|max_length[20]');
+		$this->form_validation->set_rules('connote_code', 'connote_code', 'trim|max_length[50]');
+		$this->form_validation->set_rules('connote_booking_code', 'connote_booking_code', 'trim|max_length[50]');
+		$this->form_validation->set_rules('connote_order', 'connote_order', 'trim|max_length[11]');
+		$this->form_validation->set_rules('connote_state', 'connote_state', 'trim|max_length[50]');
+		$this->form_validation->set_rules('connote_state_id', 'connote_state_id', 'trim|max_length[11]');
+		$this->form_validation->set_rules('zone_code_from', 'zone_code_from', 'trim|max_length[50]');
+		$this->form_validation->set_rules('zone_code_to', 'zone_code_to', 'trim|max_length[50]');
+		$this->form_validation->set_rules('surcharge_amount', 'surcharge_amount', 'trim|max_length[20]');
+		$this->form_validation->set_rules('transaction_id', 'transaction_id', 'trim|max_length[36]');
+		$this->form_validation->set_rules('actual_weight', 'actual_weight', 'trim|max_length[10]');
+		$this->form_validation->set_rules('volume_weight', 'volume_weight', 'trim|max_length[10]');
+		$this->form_validation->set_rules('chargeable_weight', 'chargeable_weight', 'trim|max_length[10]');
 		$this->form_validation->set_rules('created_at', 'created_at', 'trim');
 		$this->form_validation->set_rules('updated_at', 'updated_at', 'trim');
-		$this->form_validation->set_rules('organization_id', 'organization_id', 'trim');
-		$this->form_validation->set_rules('location_id', 'location_id', 'trim');
-		$this->form_validation->set_rules('connote_total_package', 'connote_total_package', 'trim');
-		$this->form_validation->set_rules('connote_surcharge_amount', 'connote_surcharge_amount', 'trim');
-		$this->form_validation->set_rules('connote_sla_day', 'connote_sla_day', 'trim');
-		$this->form_validation->set_rules('location_name', 'location_name', 'trim');
-		$this->form_validation->set_rules('location_type', 'location_type', 'trim');
-		$this->form_validation->set_rules('source_tariff_db', 'source_tariff_db', 'trim');
-		$this->form_validation->set_rules('id_source_tariff', 'id_source_tariff', 'trim');
+		$this->form_validation->set_rules('organization_id', 'organization_id', 'trim|max_length[11]');
+		$this->form_validation->set_rules('location_id', 'location_id', 'trim|max_length[36]');
+		$this->form_validation->set_rules('connote_total_package', 'connote_total_package', 'trim|max_length[20]');
+		$this->form_validation->set_rules('connote_surcharge_amount', 'connote_surcharge_amount', 'trim|max_length[20]');
+		$this->form_validation->set_rules('connote_sla_day', 'connote_sla_day', 'trim|max_length[20]');
+		$this->form_validation->set_rules('location_name', 'location_name', 'trim|max_length[100]');
+		$this->form_validation->set_rules('location_type', 'location_type', 'trim|max_length[100]');
+		$this->form_validation->set_rules('source_tariff_db', 'source_tariff_db', 'trim|max_length[100]');
+		$this->form_validation->set_rules('id_source_tariff', 'id_source_tariff', 'trim|max_length[50]');
 		$this->form_validation->set_rules('pod', 'pod', 'trim');
 		$this->form_validation->set_rules('history', 'history', 'trim');
 		$connote_valid = $this->form_validation->run();

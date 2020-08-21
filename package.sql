@@ -11,7 +11,7 @@
  Target Server Version : 100135
  File Encoding         : 65001
 
- Date: 20/08/2020 22:05:30
+ Date: 21/08/2020 14:33:42
 */
 
 SET NAMES utf8mb4;
@@ -35,34 +35,34 @@ CREATE TABLE `access`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `connote`;
 CREATE TABLE `connote`  (
-  `connote_id` int(11) NOT NULL,
+  `connote_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `connote_number` int(11) NULL DEFAULT NULL,
-  `connote_service` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_service_price` decimal(10, 2) NULL DEFAULT NULL,
-  `connote_amount` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_code` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_booking_code` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_order` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_state` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_service` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_service_price` bigint(20) NULL DEFAULT NULL,
+  `connote_amount` bigint(20) NULL DEFAULT NULL,
+  `connote_code` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_booking_code` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_order` int(11) NULL DEFAULT NULL,
+  `connote_state` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `connote_state_id` int(11) NULL DEFAULT NULL,
-  `zone_code_from` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `zone_code_to` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `surcharge_amount` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `transaction_id` int(11) NULL DEFAULT NULL,
-  `actual_weight` double NULL DEFAULT NULL,
-  `volume_weight` double NULL DEFAULT NULL,
-  `chargeable_weight` double NULL DEFAULT NULL,
-  `created_at` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `zone_code_from` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `zone_code_to` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `surcharge_amount` bigint(20) NULL DEFAULT NULL,
+  `transaction_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `actual_weight` decimal(10, 0) NULL DEFAULT NULL,
+  `volume_weight` decimal(10, 0) NULL DEFAULT NULL,
+  `chargeable_weight` decimal(10, 0) NULL DEFAULT NULL,
+  `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   `organization_id` int(11) NULL DEFAULT NULL,
-  `location_id` int(11) NULL DEFAULT NULL,
-  `connote_total_package` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_surcharge_amount` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `connote_sla_day` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `location_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `location_type` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `source_tariff_db` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `id_source_tariff` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `location_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_total_package` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_surcharge_amount` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `connote_sla_day` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `location_name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `location_type` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `source_tariff_db` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_source_tariff` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `pod` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `history` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`connote_id`) USING BTREE
