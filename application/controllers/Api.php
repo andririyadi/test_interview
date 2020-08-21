@@ -88,6 +88,7 @@ class Api extends REST_Controller {
 		$transaction_valid = $this->form_validation->run();
 		$this->form_validation->reset_validation();
 
+		// mendefisinikan data sesuai dengan kolom yang ada di table connote
 		$connote_data = array(
 			'connote_id' => UUID::v4(),
 			'connote_number' => $this->_ifempty($rawdata['connote'], 'connote_number', NULL),
@@ -121,6 +122,8 @@ class Api extends REST_Controller {
 			'history' => $this->_ifempty($rawdata['connote'], 'history', NULL),
 		);
 
+		// validasi data connote
+		$this->form_validation->set_data($connote_data);
 		$this->form_validation->set_rules('connote_id', 'connote_id', 'trim|max_length[36]');
 		$this->form_validation->set_rules('connote_number', 'connote_number', 'trim|max_length[11]');
 		$this->form_validation->set_rules('connote_service', 'connote_service', 'trim|max_length[100]');
@@ -245,7 +248,6 @@ class Api extends REST_Controller {
 		} else {
 			echo validation_errors();
 		}
-
 	}
 
 	public function package_patch($id='')
